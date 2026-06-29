@@ -1,2 +1,8 @@
+[project]
+name = "tugasdatascience"
+version = "1.0.0"
+description = "Veltrix Flask App"
+requires-python = ">=3.11"
+
 [tool.vercel]
 entrypoint = "run:app"
