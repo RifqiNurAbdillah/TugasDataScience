@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+{% block meta_description %}Veltrix - The modern Flask starter framework for deploying Machine Learning, Data Science, and AI models.{% endblock %}
+
+{% block content %}
+
+<!-- -- Hero Section --------------------------------------------- -->
+<section class="vx-hero d-flex align-items-center" id="hero">
+  <div class="container pb-5 pt-0">
+    <div class="row align-items-center gy-5">
+
+      <!-- Text column -->
+      <div class="col-lg-6 text-center text-lg-start">
+
+        <!-- Render the brand logo and text name here -->
+        <div class="d-flex justify-content-center justify-content-lg-start align-items-center gap-3 mb-4 vx-animate-scale-in">
+          <img src="{{ url_for('static', filename='img/vertix-logo.png') }}" alt="Veltrix Logo" class="vx-hero-logo mb-0" style="max-height: 80px;" />
+          <img src="{{ url_for('static', filename='img/vertix-text-name.png') }}" alt="Veltrix Brand" class="vx-hero-text-name mb-0" style="max-height: 48px;" />
+        </div>
+
+        <h1 class="vx-hero-title mb-4 vx-animate-fade-in-up vx-delay-100">
+          Deploy Models <br class="d-none d-md-block" />
+          <span class="vx-text-primary">Without Boilerplate.</span>
+        </h1>
+
+        <p class="vx-hero-subtitle mb-5 vx-animate-fade-in-up vx-delay-200">
+          Veltrix is a lightweight, ultra-clean Flask starter template designed specifically for 
+          <strong>Machine Learning, Data Science, and AI developers</strong>. Package your models, 
+          expose endpoints, manage users, and log predictions effortlessly.
+        </p>
+
+        <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start mb-5 vx-animate-fade-in-up vx-delay-300">
+          {% if current_user.is_authenticated %}
+            <a href="{{ url_for('main.dashboard') }}"
+               class="btn vx-btn-primary btn-lg px-4">
+              <i class="bi bi-grid-1x2 me-2"></i>Go to Dashboard
+            </a>
+          {% else %}
+            <a href="{{ url_for('auth.register') }}"
+               class="btn vx-btn-primary btn-lg px-4">
+              <i class="bi bi-rocket-takeoff me-2"></i>Register
+            </a>
+            <a href="{{ url_for('auth.login') }}"
+               class="btn vx-btn-outline-accent btn-lg px-4">
+              <i class="bi bi-box-arrow-in-right me-2"></i>Login
+            </a>
+          {% endif %}
+        </div>
+
+        <!-- Tech stack tags -->
+        <div class="vx-hero-tags justify-content-center justify-content-lg-start vx-animate-fade-in-up vx-delay-400">
+          <span class="vx-hero-tag"><i class="bi bi-terminal text-primary"></i> Scikit-Learn</span>
+          <span class="vx-hero-tag"><i class="bi bi-box text-accent"></i> PyTorch / TensorFlow</span>
+          <span class="vx-hero-tag"><i class="bi bi-database text-success"></i> NumPy / Pandas</span>
+          <span class="vx-hero-tag"><i class="bi bi-shield-check text-warning"></i> Secure API</span>
+        </div>
+      </div>
+
+      <!-- Code card column (Deploying ML model mockup) -->
+      <div class="col-lg-6 d-none d-lg-block">
+        <div class="vx-code-card vx-animate-fade-in-right vx-delay-200">
+          <div class="vx-code-card-header">
+            <span class="vx-dot vx-dot-red"></span>
+            <span class="vx-dot vx-dot-yellow"></span>
+            <span class="vx-dot vx-dot-green"></span>
+            <span class="ms-3 text-muted small">model_api.py</span>
+          </div>
+          <pre class="vx-code-body"><code><span class="vx-kw">import</span> joblib
+<span class="vx-kw">from</span> flask <span class="vx-kw">import</span> Blueprint, request, jsonify
+
+ml_bp = Blueprint(<span class="vx-str">"ml_api"</span>, __name__)
+model = joblib.load(<span class="vx-str">"models/classifier.pkl"</span>)
+
+<span class="vx-kw">@ml_bp.route</span>(<span class="vx-str">"/predict"</span>, methods=[<span class="vx-str">"POST"</span>])
+<span class="vx-kw">def</span> <span class="vx-text-primary">predict</span>():
+    data = request.json[<span class="vx-str">"features"</span>]
+    prediction = model.predict([data])[<span class="vx-bool">0</span>]
+    <span class="vx-kw">return</span> jsonify({<span class="vx-str">"prediction"</span>: int(prediction)})
+
+<span class="vx-comment"># Single-command API deployment made easy.</span></code></pre>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- -- Features Section ----------------------------------------- -->
+<section class="vx-features py-7" id="features">
+  <div class="container">
+
+    <div class="text-center mb-6">
+      <h2 class="vx-section-title mb-3">Model Deployment Made Simple</h2>
+      <p class="vx-section-sub">
+        Everything you need to turn raw Jupyter Notebook code into production-ready prediction APIs.
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- Feature 1 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="vx-feature-card h-100">
+          <div class="vx-feature-icon vx-icon-blue">
+            <i class="bi bi-cpu"></i>
+          </div>
+          <h5 class="vx-feature-title">ML/AI Model Integration</h5>
+          <p class="vx-feature-text">
+            Load models serialized from Scikit-Learn, PyTorch, Keras, or ONNX directly inside the Flask application lifecycle.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="vx-feature-card h-100">
+          <div class="vx-feature-icon vx-icon-purple">
+            <i class="bi bi-shield-lock"></i>
+          </div>
+          <h5 class="vx-feature-title">Secure API Authentication</h5>
+          <p class="vx-feature-text">
+            Restrict model prediction endpoints to authorised users, secure client applications, or valid developer accounts.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="vx-feature-card h-100">
+          <div class="vx-feature-icon vx-icon-green">
+            <i class="bi bi-activity"></i>
+          </div>
+          <h5 class="vx-feature-title">Prediction Logging</h5>
+          <p class="vx-feature-text">
+            Log model inputs, outputs, timestamps, and request volumes directly to SQLite or MySQL database backends.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="vx-feature-card h-100">
+          <div class="vx-feature-icon vx-icon-orange">
+            <i class="bi bi-speedometer2"></i>
+          </div>
+          <h5 class="vx-feature-title">Optimised Performance</h5>
+          <p class="vx-feature-text">
+            Lightweight, stateless blueprint routing ensures minimal overhead and lightning-fast inference response times.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 5 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="vx-feature-card h-100">
+          <div class="vx-feature-icon vx-icon-pink">
+            <i class="bi bi-database-gear"></i>
+          </div>
+          <h5 class="vx-feature-title">Data Pipeline Support</h5>
+          <p class="vx-feature-text">
+            Clean integration with custom processing pipelines, NumPy vector arrays, Pandas DataFrames, and JSON serializers.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 6 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="vx-feature-card h-100">
+          <div class="vx-feature-icon vx-icon-teal">
+            <i class="bi bi-check-all"></i>
+          </div>
+          <h5 class="vx-feature-title">Test-Driven Operations</h5>
+          <p class="vx-feature-text">
+            A comprehensive, pre-configured Pytest suite handles automated endpoint testing so you can upgrade models safely.
+          </p>
+        </div>
+      </div>
+
+    </div><!-- /row -->
+  </div><!-- /container -->
+</section>
+
+
+<!-- -- CTA Section ---------------------------------------------- -->
+{% if not current_user.is_authenticated %}
+<section class="vx-cta py-7">
+  <div class="container text-center">
+    <div class="vx-cta-card vx-card mx-auto py-5 px-4">
+      <h2 class="vx-section-title mb-3">Ready to deploy your first model?</h2>
+      <p class="text-muted mb-4">
+        Set up your secure, modern prediction dashboard in under 5 minutes.
+      </p>
+      <a href="{{ url_for('auth.register') }}"
+         class="btn vx-btn-primary btn-lg px-5">
+        <i class="bi bi-rocket-takeoff me-2"></i>Create Framework Account
+      </a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}

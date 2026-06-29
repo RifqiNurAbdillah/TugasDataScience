@@ -1,0 +1,1267 @@
+/* ================================================================
+   Veltrix - Custom Stylesheet
+   Ultra-clean light theme with solid colours (non-gradient).
+   Dominant white backgrounds with black, dark blue, and purple text.
+   ================================================================ */
+
+/* ================================================================
+   1. CSS CUSTOM PROPERTIES (Design Tokens)
+   ================================================================ */
+:root {
+  /* Palette - Light Mode Solid Colors */
+  --vx-bg:            #ffffff;
+  --vx-bg-2:          #f8fafc;   /* Slate 50 */
+  --vx-bg-3:          #f1f5f9;   /* Slate 100 */
+  --vx-surface:       #ffffff;
+  --vx-surface-2:     #f8fafc;
+  --vx-border:        #e2e8f0;   /* Slate 200 */
+  --vx-border-hover:  #cbd5e1;   /* Slate 300 */
+
+  /* Theme Solid Colors (No Gradients) */
+  --vx-primary:       #1e40af;   /* Dark Blue */
+  --vx-primary-hover: #1d4ed8;
+  --vx-accent:        #6d28d9;   /* Purple */
+  --vx-accent-hover:  #5b21b6;
+  
+  /* Text */
+  --vx-text-dark:     #0f172a;   /* Slate 900 (Black) */
+  --vx-text-body:     #334155;   /* Slate 700 */
+  --vx-text-muted:    #64748b;   /* Slate 500 */
+  --vx-text-blue:     #1e3a8a;   /* Deep Dark Blue */
+  --vx-text-purple:   #5b21b6;   /* Rich Purple */
+
+  /* Shadows & Radius */
+  --vx-shadow-sm:     0 1px 2px rgba(0, 0, 0, 0.05);
+  --vx-shadow-md:     0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --vx-shadow-lg:     0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+  --vx-card-shadow:   0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+
+  --vx-radius:        8px;
+  --vx-radius-lg:     16px;
+  --vx-radius-sm:     4px;
+
+  --vx-transition:    all 0.2s ease-in-out;
+  --vx-navbar-h:      72px;
+}
+
+
+/* ================================================================
+   2. BASE / RESET
+   ================================================================ */
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: var(--vx-bg);
+  color: var(--vx-text-body);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  flex: 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--vx-text-dark);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.vx-text-primary {
+  color: var(--vx-primary) !important;
+}
+
+.vx-text-accent {
+  color: var(--vx-accent) !important;
+}
+
+.vx-text-blue {
+  color: var(--vx-text-blue) !important;
+}
+
+.vx-text-purple {
+  color: var(--vx-text-purple) !important;
+}
+
+a {
+  color: var(--vx-accent);
+  text-decoration: none;
+  transition: var(--vx-transition);
+}
+
+a:hover {
+  color: var(--vx-accent-hover);
+}
+
+code {
+  background: var(--vx-bg-3);
+  padding: 3px 6px;
+  border-radius: var(--vx-radius-sm);
+  font-size: 0.85em;
+  color: var(--vx-accent);
+  border: 1px solid var(--vx-border);
+}
+
+pre {
+  background: var(--vx-bg-2);
+  border: 1px solid var(--vx-border);
+  border-radius: var(--vx-radius);
+  padding: 1.25rem;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  border: none;
+  color: var(--vx-text-body);
+}
+
+/* Extra padding helpers */
+.py-6 { padding-top: 5rem !important; padding-bottom: 5rem !important; }
+.py-7 { padding-top: 6rem !important; padding-bottom: 6rem !important; }
+
+
+/* ================================================================
+   3. NAVBAR
+   ================================================================ */
+.vx-navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--vx-border);
+  height: var(--vx-navbar-h);
+  transition: var(--vx-transition);
+}
+
+.vx-navbar.scrolled {
+  box-shadow: var(--vx-shadow-md);
+}
+
+/* Brand */
+.vx-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--vx-text-dark) !important;
+}
+
+.vx-navbar-logo {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+}
+
+.vx-navbar-text {
+  height: 20px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Nav links */
+.vx-navbar .nav-link {
+  color: var(--vx-text-body) !important;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem !important;
+  border-radius: var(--vx-radius);
+  transition: var(--vx-transition);
+}
+
+.vx-navbar .nav-link:hover,
+.vx-navbar .nav-link.active {
+  color: var(--vx-primary) !important;
+  background-color: var(--vx-bg-2);
+}
+
+
+/* ================================================================
+   4. BUTTONS (Solid Non-Gradient)
+   ================================================================ */
+.vx-btn-primary {
+  background-color: var(--vx-primary);
+  border: 1px solid var(--vx-primary);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: var(--vx-radius);
+  transition: var(--vx-transition);
+  font-size: 0.95rem;
+  padding: 0.6rem 1.25rem;
+}
+
+.vx-btn-primary:hover {
+  background-color: var(--vx-primary-hover);
+  border-color: var(--vx-primary-hover);
+  color: #ffffff;
+}
+
+.vx-btn-accent {
+  background-color: var(--vx-accent);
+  border: 1px solid var(--vx-accent);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: var(--vx-radius);
+  transition: var(--vx-transition);
+  font-size: 0.95rem;
+  padding: 0.6rem 1.25rem;
+}
+
+.vx-btn-accent:hover {
+  background-color: var(--vx-accent-hover);
+  border-color: var(--vx-accent-hover);
+  color: #ffffff;
+}
+
+.vx-btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--vx-primary);
+  color: var(--vx-primary);
+  font-weight: 600;
+  border-radius: var(--vx-radius);
+  transition: var(--vx-transition);
+  font-size: 0.95rem;
+  padding: 0.6rem 1.25rem;
+}
+
+.vx-btn-outline:hover {
+  background-color: var(--vx-primary);
+  color: #ffffff;
+}
+
+.vx-btn-outline-accent {
+  background-color: transparent;
+  border: 1px solid var(--vx-accent);
+  color: var(--vx-accent);
+  font-weight: 600;
+  border-radius: var(--vx-radius);
+  transition: var(--vx-transition);
+  font-size: 0.95rem;
+  padding: 0.6rem 1.25rem;
+}
+
+.vx-btn-outline-accent:hover {
+  background-color: var(--vx-accent);
+  color: #ffffff;
+}
+
+.vx-btn-outline-light {
+  background-color: transparent;
+  border: 1px solid var(--vx-border);
+  color: var(--vx-text-body);
+  font-weight: 500;
+  border-radius: var(--vx-radius-sm);
+  transition: var(--vx-transition);
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+}
+
+.vx-btn-outline-light:hover {
+  background-color: var(--vx-bg-2);
+  border-color: var(--vx-border-hover);
+  color: var(--vx-text-dark);
+}
+
+.vx-btn-danger {
+  background-color: #dc2626;
+  border: 1px solid #dc2626;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: var(--vx-radius);
+  transition: var(--vx-transition);
+  font-size: 0.95rem;
+  padding: 0.6rem 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.vx-btn-danger:hover {
+  background-color: #b91c1c;
+  border-color: #b91c1c;
+  color: #ffffff;
+}
+
+
+/* ================================================================
+   5. FLASH MESSAGES
+   ================================================================ */
+.vx-flash-container {
+  position: sticky;
+  top: var(--vx-navbar-h);
+  z-index: 1040;
+}
+
+.vx-alert {
+  border-radius: 0;
+  border: none;
+  border-left: 4px solid currentColor;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.vx-alert.alert-success {
+  background-color: #ecfdf5;
+  color: #065f46;
+  border-left-color: #10b981;
+}
+
+.vx-alert.alert-danger {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border-left-color: #ef4444;
+}
+
+.vx-alert.alert-warning {
+  background-color: #fffbeb;
+  color: #92400e;
+  border-left-color: #f59e0b;
+}
+
+.vx-alert.alert-info {
+  background-color: #ecfeff;
+  color: #155e75;
+  border-left-color: #06b6d4;
+}
+
+
+/* ================================================================
+   6. HERO SECTION (Predominately White, Clean Layout)
+   ================================================================ */
+.vx-hero {
+  position: relative;
+  background-color: #ffffff;
+  padding: 0.25rem 0 2rem 0;
+  border-bottom: 1px solid var(--vx-border);
+}
+
+.vx-hero-logo {
+  max-height: 180px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.vx-hero-text-name {
+  max-height: 60px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.vx-badge {
+  display: inline-flex;
+  align-items: center;
+  background-color: #eff6ff;   /* Blue 50 */
+  border: 1px solid #bfdbfe;   /* Blue 200 */
+  color: var(--vx-primary);
+  border-radius: 999px;
+  padding: 0.4rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.vx-badge-purple {
+  background-color: #f5f3ff;   /* Purple 50 */
+  border: 1px solid #ddd6fe;   /* Purple 200 */
+  color: var(--vx-accent);
+}
+
+.vx-hero-title {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--vx-text-dark);
+}
+
+.vx-hero-subtitle {
+  font-size: 1.15rem;
+  color: var(--vx-text-body);
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+/* Feature tags */
+.vx-hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.vx-hero-tag {
+  background: var(--vx-bg-2);
+  border: 1px solid var(--vx-border);
+  border-radius: var(--vx-radius-sm);
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--vx-text-dark);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.vx-hero-tag i {
+  font-size: 0.95rem;
+}
+
+
+/* ================================================================
+   7. FEATURES / VALUE PROPOSITION
+   ================================================================ */
+.vx-features {
+  background-color: var(--vx-bg-2);
+  border-bottom: 1px solid var(--vx-border);
+}
+
+.vx-section-title {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 800;
+  color: var(--vx-text-dark);
+  letter-spacing: -0.02em;
+}
+
+.vx-section-sub {
+  font-size: 1.05rem;
+  color: var(--vx-text-muted);
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* Feature cards */
+.vx-feature-card {
+  background-color: var(--vx-surface);
+  border: 1px solid var(--vx-border);
+  border-radius: var(--vx-radius-lg);
+  padding: 2.25rem 2rem;
+  transition: var(--vx-transition);
+  box-shadow: var(--vx-shadow-sm);
+  cursor: default;
+}
+
+.vx-feature-card:hover {
+  border-color: var(--vx-primary);
+  transform: translateY(-4px);
+  box-shadow: var(--vx-shadow-lg);
+}
+
+.vx-feature-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--vx-radius);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Flat solid colors for feature icons */
+.vx-icon-blue   { background-color: #dbeafe; color: #1e40af; }
+.vx-icon-purple { background-color: #f3e8ff; color: #6d28d9; }
+.vx-icon-green  { background-color: #d1fae5; color: #065f46; }
+.vx-icon-orange { background-color: #ffedd5; color: #9a3412; }
+.vx-icon-pink   { background-color: #fce7f3; color: #9d174d; }
+.vx-icon-teal   { background-color: #ccfbf1; color: #115e59; }
+
+.vx-feature-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--vx-text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.vx-feature-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--vx-text-body);
+  margin-bottom: 0;
+}
+
+
+/* ================================================================
+   8. INTERACTIVE DEMO / STATS PREVIEW
+   ================================================================ */
+.vx-demo-section {
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--vx-border);
+}
+
+.vx-code-card {
+  background-color: #0f172a;   /* Slate 900 */
+  border-radius: var(--vx-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--vx-card-shadow);
+}
+
+.vx-code-card-header {
+  background-color: #1e293b;   /* Slate 800 */
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.vx-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.vx-dot-red    { background-color: #ef4444; }
+.vx-dot-yellow { background-color: #f59e0b; }
+.vx-dot-green  { background-color: #10b981; }
+
+.vx-code-body {
+  padding: 1.75rem;
+  margin: 0;
+  font-family: "Fira Code", "Cascadia Code", Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.8;
+  color: #f1f5f9;
+  overflow-x: auto;
+}
+
+.vx-kw      { color: #f472b6; font-weight: 600; }
+.vx-str     { color: #34d399; }
+.vx-bool    { color: #fb923c; }
+.vx-comment { color: #94a3b8; font-style: italic; }
+
+
+/* ================================================================
+   9. AUTH PAGES (Login / Register)
+   ================================================================ */
+.vx-auth-section {
+  background-color: var(--vx-bg-2);
+  min-height: calc(100vh - var(--vx-navbar-h));
+}
+
+.vx-auth-card {
+  background-color: #ffffff;
+  border: 1px solid var(--vx-border);
+  border-radius: var(--vx-radius-lg);
+  padding: 2.75rem 2.25rem;
+  box-shadow: var(--vx-card-shadow);
+}
+
+.vx-auth-logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.vx-auth-title {
+  font-weight: 800;
+  color: var(--vx-text-dark);
+  letter-spacing: -0.02em;
+}
+
+/* Form Elements */
+.vx-form-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--vx-text-dark);
+  margin-bottom: 0.4rem;
+}
+
+.vx-form-hint {
+  font-size: 0.8rem;
+  color: var(--vx-text-muted);
+  margin-top: 0.25rem;
+}
+
+.vx-input-group {
+  border-radius: var(--vx-radius);
+  overflow: hidden;
+  border: 1px solid var(--vx-border);
+  transition: var(--vx-transition);
+}
+
+.vx-input-group:focus-within {
+  border-color: var(--vx-primary);
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.12);
+}
+
+.vx-input-icon {
+  background-color: var(--vx-bg-2);
+  border: none !important;
+  color: var(--vx-text-muted);
+  font-size: 0.95rem;
+}
+
+.vx-input {
+  background-color: #ffffff !important;
+  border: none !important;
+  color: var(--vx-text-dark) !important;
+  font-size: 0.95rem;
+  box-shadow: none !important;
+}
+
+.vx-input::placeholder {
+  color: #a1a1aa;
+}
+
+.vx-toggle-pw {
+  background-color: #ffffff !important;
+  border: none !important;
+  color: var(--vx-text-muted) !important;
+  padding: 0 0.85rem;
+}
+
+.vx-toggle-pw:hover {
+  color: var(--vx-text-dark) !important;
+}
+
+.vx-checkbox {
+  border: 1px solid var(--vx-border-hover);
+  border-radius: var(--vx-radius-sm);
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.vx-checkbox:checked {
+  background-color: var(--vx-primary);
+  border-color: var(--vx-primary);
+}
+
+
+/* ================================================================
+   10. DASHBOARD
+   ================================================================ */
+.vx-dashboard {
+  background-color: var(--vx-bg-2);
+}
+
+/* Welcome banner */
+.vx-dashboard-banner {
+  background-color: #ffffff;
+  border: 1px solid var(--vx-border);
+  border-radius: var(--vx-radius-lg);
+  padding: 2rem 2.25rem;
+  box-shadow: var(--vx-shadow-sm);
+}
+
+.vx-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--vx-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.vx-avatar-purple {
+  background-color: var(--vx-accent);
+}
+
+.vx-dashboard-greeting {
+  font-size: 0.8rem;
+  color: var(--vx-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.vx-dashboard-username {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--vx-text-dark);
+}
+
+/* Stat Cards (Solid Light Backgrounds) */
+.vx-stat-card {
+  background-color: #ffffff;
+  border: 1px solid var(--vx-border);
+  border-radius: var(--vx-radius-lg);
+  padding: 1.75rem;
+  transition: var(--vx-transition);
+  box-shadow: var(--vx-shadow-sm);
+}
+
+.vx-stat-card:hover {
+  border-color: var(--vx-primary);
+  transform: translateY(-3px);
+  box-shadow: var(--vx-shadow-md);
+}
+
+.vx-stat-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  display: inline-block;
+  color: var(--vx-primary);
+}
+
+.vx-stat-accent .vx-stat-icon {
+  color: var(--vx-accent);
+}
+
+.vx-stat-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--vx-text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.vx-stat-value {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--vx-text-dark);
+}
+
+/* Base Card */
+.vx-card {
+  background-color: #ffffff;
+  border: 1px solid var(--vx-border);
+  border-radius: var(--vx-radius-lg);
+  box-shadow: var(--vx-shadow-sm);
+  overflow: hidden;
+  transition: var(--vx-transition);
+}
+
+.vx-card:hover {
+  box-shadow: var(--vx-shadow-md);
+}
+
+.vx-card-header {
+  background-color: var(--vx-bg-2);
+  border-bottom: 1px solid var(--vx-border);
+  padding: 1.1rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--vx-text-dark);
+}
+
+.vx-card-body {
+  padding: 1.5rem;
+}
+
+/* Checklist */
+.vx-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.vx-checklist li {
+  padding: 0.65rem 0;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--vx-border);
+  display: flex;
+  align-items: center;
+  color: var(--vx-text-body);
+}
+
+.vx-checklist li:last-child {
+  border-bottom: none;
+}
+
+/* Directory Tree */
+.vx-tree {
+  background-color: var(--vx-bg-2);
+  border-radius: var(--vx-radius);
+  padding: 1.25rem;
+  font-family: "Fira Code", "Cascadia Code", Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.9;
+  color: var(--vx-text-body);
+}
+
+.vx-tree-comment {
+  color: var(--vx-text-muted);
+  font-style: italic;
+}
+
+
+/* ================================================================
+   11. FOOTER
+   ================================================================ */
+.vx-footer {
+  background-color: #ffffff;
+  border-top: 1px solid var(--vx-border);
+}
+
+.vx-footer-tagline {
+  font-size: 0.8rem;
+  color: var(--vx-text-muted);
+}
+
+.vx-footer-links a {
+  color: var(--vx-text-muted);
+  font-size: 0.875rem;
+  transition: var(--vx-transition);
+}
+
+.vx-footer-links a:hover {
+  color: var(--vx-primary);
+}
+
+.vx-footer-copy {
+  font-size: 0.85rem;
+  color: var(--vx-text-muted);
+}
+
+
+/* ================================================================
+   12. RESPONSIVE TWEAKS
+   ================================================================ */
+@media (max-width: 991.98px) {
+  .vx-hero {
+    padding: 3rem 0;
+    text-align: center;
+  }
+  
+  .vx-hero-logo {
+    margin: 0 auto 1.5rem auto;
+  }
+
+  .vx-hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+/* ================================================================
+   13. ANIMATION AND MICRO-INTERACTIONS
+   ================================================================ */
+
+/* Transition-based Animation Classes (Above-the-fold & Page Load) */
+.vx-animate-fade-in-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.vx-animate-fade-in-down {
+  opacity: 0;
+  transform: translateY(-24px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.vx-animate-fade-in-left {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.vx-animate-fade-in-right {
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.vx-animate-scale-in {
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+/* Active State for Page-Load Animations */
+.vx-animate-fade-in-up.vx-visible,
+.vx-animate-fade-in-down.vx-visible,
+.vx-animate-fade-in-left.vx-visible,
+.vx-animate-fade-in-right.vx-visible,
+.vx-animate-scale-in.vx-visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
+
+/* Transition Delay Helpers */
+.vx-delay-100 { transition-delay: 100ms; }
+.vx-delay-200 { transition-delay: 200ms; }
+.vx-delay-300 { transition-delay: 300ms; }
+.vx-delay-400 { transition-delay: 400ms; }
+.vx-delay-500 { transition-delay: 500ms; }
+.vx-delay-600 { transition-delay: 600ms; }
+.vx-delay-700 { transition-delay: 700ms; }
+
+/* Scroll-Triggered Reveal Initial States (for Intersection Observer) */
+.vx-feature-card,
+.vx-stat-card,
+.vx-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  will-change: transform, opacity;
+}
+
+/* Intersection Observer Active State */
+.vx-feature-card.vx-visible,
+.vx-stat-card.vx-visible,
+.vx-card.vx-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Enhance Auth Cards and Inputs */
+.vx-auth-card {
+  border-top: 4px solid var(--vx-accent);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vx-auth-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.08);
+}
+
+.vx-input-group {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.vx-input-group:focus-within {
+  transform: translateY(-1px);
+}
+
+/* Micro-animations for Interactive Elements */
+.vx-btn-primary,
+.vx-btn-accent {
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vx-btn-primary:active,
+.vx-btn-accent:active {
+  transform: scale(0.98);
+}
+
+
+/* ================================================================
+   14. MODEL INFO TABLE
+   ================================================================ */
+.vx-model-info-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.vx-model-info-table tr {
+  border-bottom: 1px solid var(--vx-border);
+}
+
+.vx-model-info-table tr:last-child td {
+  border-bottom: none;
+}
+
+.vx-info-label {
+  padding: 0.75rem 1rem 0.75rem 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--vx-text-muted);
+  white-space: nowrap;
+  width: 42%;
+}
+
+.vx-info-value {
+  padding: 0.75rem 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--vx-text-dark);
+}
+
+.vx-version-badge {
+  display: inline-block;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: var(--vx-primary);
+  border-radius: 999px;
+  padding: 0.15rem 0.65rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+
+/* ================================================================
+   15. PERFORMANCE METRIC BARS
+   ================================================================ */
+.vx-metric-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--vx-text-body);
+}
+
+.vx-metric-value {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.vx-metric-bar-track {
+  height: 6px;
+  background-color: var(--vx-bg-3);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.vx-metric-bar {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vx-bar-danger  { background-color: #ef4444; }
+.vx-bar-warning { background-color: #f59e0b; }
+.vx-bar-success { background-color: #10b981; }
+
+.vx-metric-hint {
+  font-size: 0.76rem;
+  color: var(--vx-text-muted);
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+
+
+/* ================================================================
+   16. ANALYTICS CHART CARDS
+   ================================================================ */
+.vx-section-divider {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--vx-text-dark);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.25rem;
+}
+
+.vx-chart-container {
+  background-color: var(--vx-bg-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+  overflow: hidden;
+}
+
+.vx-chart-img {
+  width: 100%;
+  height: auto;
+  max-height: 340px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.vx-card:hover .vx-chart-img {
+  transform: scale(1.015);
+}
+
+.vx-chart-caption {
+  padding: 0.65rem 1.25rem;
+  font-size: 0.8rem;
+  color: var(--vx-text-muted);
+  border-top: 1px solid var(--vx-border);
+  background-color: var(--vx-bg-2);
+}
+
+
+/* ================================================================
+   17. QUICK ACTION TILES
+   ================================================================ */
+.vx-action-tile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background-color: var(--vx-bg-2);
+  border: 1px solid var(--vx-border);
+  border-radius: var(--vx-radius);
+  text-decoration: none;
+  color: var(--vx-text-dark);
+  transition: var(--vx-transition);
+}
+
+.vx-action-tile:hover {
+  border-color: var(--vx-primary);
+  background-color: #eff6ff;
+  color: var(--vx-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--vx-shadow-md);
+}
+
+.vx-action-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--vx-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.vx-action-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: inherit;
+}
+
+.vx-action-sub {
+  font-size: 0.78rem;
+  color: var(--vx-text-muted);
+  margin-top: 0.1rem;
+}
+
+
+/* ================================================================
+   18. TEST MODEL – FORM INPUTS
+   ================================================================ */
+.vx-input-field {
+  border: 1px solid var(--vx-border);
+  border-radius: var(--vx-radius);
+  color: var(--vx-text-dark);
+  font-size: 0.92rem;
+  padding: 0.55rem 0.9rem;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vx-input-field:focus {
+  border-color: var(--vx-primary);
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+  outline: none;
+}
+
+.vx-select-field {
+  border: 1px solid var(--vx-border);
+  border-radius: var(--vx-radius);
+  color: var(--vx-text-dark);
+  font-size: 0.92rem;
+  padding: 0.55rem 0.9rem;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vx-select-field:focus {
+  border-color: var(--vx-primary);
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+  outline: none;
+}
+
+
+/* ================================================================
+   19. TEST MODEL – PREDICTION RESULT CARD
+   ================================================================ */
+.vx-result-card {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border: 2px solid #86efac;
+  border-radius: var(--vx-radius-lg);
+  padding: 1.75rem;
+  box-shadow: 0 8px 24px -8px rgba(16, 185, 129, 0.25);
+}
+
+.vx-result-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.vx-result-icon {
+  width: 56px;
+  height: 56px;
+  background-color: #10b981;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #ffffff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+}
+
+.vx-result-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #059669;
+}
+
+.vx-result-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #065f46;
+  letter-spacing: -0.03em;
+}
+
+.vx-result-divider {
+  height: 1px;
+  background-color: #86efac;
+  margin: 1.25rem 0;
+}
+
+.vx-result-summary-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #059669;
+}
+
+.vx-summary-item {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid #bbf7d0;
+  border-radius: var(--vx-radius-sm);
+  padding: 0.4rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.vx-summary-key {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #059669;
+}
+
+.vx-summary-val {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #065f46;
+}
+
+.vx-card-highlighted {
+  border-color: var(--vx-primary);
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.08);
+}
+
+
+/* ================================================================
+   20. FEATURE TAG PILLS
+   ================================================================ */
+.vx-feature-tag-pill {
+  display: inline-block;
+  background-color: var(--vx-bg-3);
+  border: 1px solid var(--vx-border);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--vx-text-body);
+  transition: var(--vx-transition);
+}
+
+.vx-feature-tag-pill:hover {
+  background-color: #eff6ff;
+  border-color: #bfdbfe;
+  color: var(--vx-primary);
+}

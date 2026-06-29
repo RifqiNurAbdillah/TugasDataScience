@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+{% block meta_description %}Model deployment dashboard – Salary Prediction Model analytics and performance metrics.{%
+endblock %}
+
+{% block content %}
+<section class="vx-dashboard py-5">
+  <div class="container">
+
+    <!-- ── Welcome Banner ───────────────────────────────────────────── -->
+    <div class="vx-dashboard-banner mb-5 vx-animate-fade-in-up">
+      <div class="row align-items-center gy-3">
+        <div class="col-auto">
+          <div class="vx-avatar vx-avatar-purple">
+            {{ (current_user.username | first | default('U')) | upper }}
+          </div>
+        </div>
+        <div class="col">
+          <p class="vx-dashboard-greeting mb-0">DEVELOPER PANEL</p>
+          <h1 class="vx-dashboard-username mb-0">{{ current_user.username }}</h1>
+        </div>
+        <div class="col-auto d-flex align-items-center gap-3">
+          <p class="text-muted small mb-0">
+            <i class="bi bi-calendar3 me-1"></i>{{ current_date }}
+          </p>
+          <a href="{{ url_for('main.test_model') }}" class="btn vx-btn-accent btn-sm d-flex align-items-center gap-2">
+            <i class="bi bi-play-circle-fill"></i> Test Model
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Status Stats Row ──────────────────────────────────────────── -->
+    <div class="row g-4 mb-5">
+      <div class="col-sm-6 col-xl-3">
+        <div class="vx-stat-card">
+          <div class="vx-stat-icon vx-text-primary"><i class="bi bi-cpu-fill"></i></div>
+          <div class="vx-stat-label">Active Deployments</div>
+          <div class="vx-stat-value vx-text-blue">1 Model</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xl-3">
+        <div class="vx-stat-card">
+          <div class="vx-stat-icon vx-text-accent"><i class="bi bi-speedometer2"></i></div>
+          <div class="vx-stat-label">Model Status</div>
+          <div class="vx-stat-value text-success">Online ✓</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xl-3">
+        <div class="vx-stat-card">
+          <div class="vx-stat-icon text-info"><i class="bi bi-graph-up-arrow"></i></div>
+          <div class="vx-stat-label">ROC-AUC Score</div>
+          <div class="vx-stat-value vx-text-purple">0.6505</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xl-3">
+        <div class="vx-stat-card">
+          <div class="vx-stat-icon text-warning"><i class="bi bi-database-check"></i></div>
+          <div class="vx-stat-label">Dataset Size</div>
+          <div class="vx-stat-value text-dark">4238 Rows</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Model Info + Performance Metrics ─────────────────────────── -->
+    <div class="row g-4 mb-5">
+
+      <!-- Model Information -->
+      <div class="col-lg-6">
+        <div class="vx-card h-100">
+          <div class="vx-card-header d-flex align-items-center gap-2">
+            <i class="bi bi-info-circle-fill vx-text-primary"></i>
+            Model Information
+          </div>
+          <div class="vx-card-body">
+            <table class="vx-model-info-table w-100">
+              <tbody>
+                <tr>
+                  <td class="vx-info-label"><i class="bi bi-tag me-2 vx-text-primary"></i>Model Name</td>
+                  <td class="vx-info-value">Heart Disease Risk Prediction</td>
+                </tr>
+                <tr>
+                  <td class="vx-info-label"><i class="bi bi-bookmark me-2 vx-text-accent"></i>Version</td>
+                  <td class="vx-info-value"><span class="vx-version-badge">v1.1.0 (SMOTE)</span></td>
+                </tr>
+                <tr>
+                  <td class="vx-info-label"><i class="bi bi-diagram-3 me-2 text-success"></i>Algorithm</td>
+                  <td class="vx-info-value">Logistic Regression</td>
+                </tr>
+                <tr>
+                  <td class="vx-info-label"><i class="bi bi-calendar-check me-2 text-warning"></i>Training Date</td>
+                  <td class="vx-info-value">2026-06-22</td>
+                </tr>
+                <tr>
+                  <td class="vx-info-label"><i class="bi bi-table me-2 text-info"></i>Features Used</td>
+                  <td class="vx-info-value">13 Features (Balanced via SMOTE)</td>
+                </tr>
+                <tr>
+                  <td class="vx-info-label"><i class="bi bi-bullseye me-2 vx-text-primary"></i>Target</td>
+                  <td class="vx-info-value">TenYearCHD (Classification)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="vx-card h-100">
+          <div class="vx-card-header d-flex align-items-center gap-2">
+            <i class="bi bi-bar-chart-fill vx-text-accent"></i>
+            Performance Metrics
+          </div>
+          <div class="vx-card-body">
+            <p class="text-muted small mb-4">Evaluation on held-out test set (Total: 848 Samples).</p>
+
+            <div class="vx-metric-row mb-4">
+              <div class="d-flex justify-content-between align-items-baseline mb-1">
+                <span class="vx-metric-label">
+                  <i class="bi bi-check-circle me-2 text-primary"></i>
+                  Accuracy
+                </span>
+                <span class="vx-metric-value text-primary">64.00%</span>
+              </div>
+              <div class="vx-metric-bar-track">
+                <div class="vx-metric-bar vx-bar-primary" style="width: 64%;"></div>
+              </div>
+              <p class="vx-metric-hint">Overall correct predictions (Sehat & Risiko Jantung)</p>
+            </div>
+
+            <div class="vx-metric-row mb-4">
+              <div class="d-flex justify-content-between align-items-baseline mb-1">
+                <span class="vx-metric-label">
+                  <i class="bi bi-heart-pulse me-2 text-success"></i>
+                  Recall <span class="text-muted">(Risiko Jantung)</span>
+                </span>
+                <span class="vx-metric-value text-success">56.00%</span>
+              </div>
+              <div class="vx-metric-bar-track">
+                <div class="vx-metric-bar vx-bar-success" style="width: 56%;"></div>
+              </div>
+              <p class="vx-metric-hint">72 out of 129 actual positive cases successfully detected</p>
+            </div>
+
+            <div class="vx-metric-row mb-4">
+              <div class="d-flex justify-content-between align-items-baseline mb-1">
+                <span class="vx-metric-label">
+                  <i class="bi bi-bullseye me-2 text-warning"></i>
+                  Precision <span class="text-muted">(Risiko Jantung)</span>
+                </span>
+                <span class="vx-metric-value text-warning">23.00%</span>
+              </div>
+              <div class="vx-metric-bar-track">
+                <div class="vx-metric-bar vx-bar-warning" style="width: 23%;"></div>
+              </div>
+              <p class="vx-metric-hint">Higher false alarm rate due to SMOTE sensitivity optimization</p>
+            </div>
+
+            <div class="vx-metric-row">
+              <div class="d-flex justify-content-between align-items-baseline mb-1">
+                <span class="vx-metric-label">
+                  <i class="bi bi-graph-up-arrow me-2 text-info"></i>
+                  ROC-AUC Score
+                </span>
+                <span class="vx-metric-value text-info">0.6505</span>
+              </div>
+              <div class="vx-metric-bar-track">
+                <div class="vx-metric-bar vx-bar-info" style="width: 65.05%;"></div>
+              </div>
+              <p class="vx-metric-hint">Acceptable discrimination power between classes</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /analytics -->
+
+    <!-- ── Quick Actions ─────────────────────────────────────────────── -->
+    <div class="row g-4">
+      <div class="col-12">
+        <div class="vx-card">
+          <div class="vx-card-header d-flex align-items-center gap-2">
+            <i class="bi bi-lightning-fill text-warning"></i>
+            Quick Actions
+          </div>
+          <div class="vx-card-body">
+            <div class="row g-3">
+              <div class="col-sm-6 col-md-4">
+                <a href="{{ url_for('main.test_model') }}" class="vx-action-tile" id="actionTestModel">
+                  <div class="vx-action-icon vx-icon-purple">
+                    <i class="bi bi-play-circle-fill"></i>
+                  </div>
+                  <div>
+                    <div class="vx-action-title">Test Model</div>
+                    <div class="vx-action-sub">Run a live salary prediction</div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 col-md-4">
+                <a href="{{ url_for('main.dashboard') }}" class="vx-action-tile" id="actionRefreshDashboard">
+                  <div class="vx-action-icon vx-icon-blue">
+                    <i class="bi bi-arrow-clockwise"></i>
+                  </div>
+                  <div>
+                    <div class="vx-action-title">Refresh Dashboard</div>
+                    <div class="vx-action-sub">Reload model status & metrics</div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 col-md-4">
+                <a href="https://github.com/Tedshub/Vertix" target="_blank" class="vx-action-tile" id="actionViewDocs">
+                  <div class="vx-action-icon vx-icon-green">
+                    <i class="bi bi-book-fill"></i>
+                  </div>
+                  <div>
+                    <div class="vx-action-title">Documentation</div>
+                    <div class="vx-action-sub">View Vertix framework guide</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /quick actions -->
+
+  </div><!-- /container -->
+</section>
+{% endblock %}

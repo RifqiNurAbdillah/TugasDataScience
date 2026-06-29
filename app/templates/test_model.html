@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 950px;">
+    <div class="card shadow mb-5">
+        <div class="card-header bg-danger text-white">
+            <h3 class="card-title mb-0">❤️ Uji Model Risiko Penyakit Jantung</h3>
+        </div>
+        <div class="card-body">
+
+            {% if result and result.error %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error!</strong> {{ result.error }}
+            </div>
+            {% endif %}
+
+            <form action="{{ url_for('main.test_model') }}" method="POST">
+
+                <h5 class="text-danger border-bottom pb-2 mb-3">📋 Data Demografi & Klinis Dasar</h5>
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="sex" class="form-label font-weight-bold">Jenis Kelamin</label>
+                        <select class="form-control" name="sex" id="sex" required>
+                            <option value="1">Laki-laki</option>
+                            <option value="0">Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="age" class="form-label font-weight-bold">Usia (Tahun)</label>
+                        <input type="number" class="form-control" name="age" id="age" min="1" max="120"
+                            placeholder="Contoh: 54" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="cp" class="form-label font-weight-bold">Tipe Nyeri Dada (cp)</label>
+                        <select class="form-control" name="cp" id="cp" required>
+                            <option value="0">0: Tipikal Angina</option>
+                            <option value="1">1: Atipikal Angina</option>
+                            <option value="2">2: Nyeri Non-Anginal</option>
+                            <option value="3">3: Asimtomatik</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="trestbps" class="form-label font-weight-bold">Tekanan Darah Istirahat
+                            (trestbps)</label>
+                        <input type="number" class="form-control" name="trestbps" id="trestbps"
+                            placeholder="mmHg. Contoh: 130" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="chol" class="form-label font-weight-bold">Serum Kolesterol (chol)</label>
+                        <input type="number" class="form-control" name="chol" id="chol" placeholder="mg/dL. Contoh: 240"
+                            required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="fbs" class="form-label font-weight-bold">Gula Darah Puasa > 120 mg/dL (fbs)</label>
+                        <select class="form-control" name="fbs" id="fbs" required>
+                            <option value="0">Tidak (≤ 120 mg/dL)</option>
+                            <option value="1">Ya (> 120 mg/dL)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <h5 class="text-danger border-bottom pb-2 mb-3">⚡ Grafik Jantung & Hasil Pemeriksaan Lanjutan</h5>
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="restecg" class="form-label font-weight-bold">Hasil EKG Istirahat (restecg)</label>
+                        <select class="form-control" name="restecg" id="restecg" required>
+                            <option value="0">0: Normal</option>
+                            <option value="1">1: Kelainan Gelombang ST-T</option>
+                            <option value="2">2: Hipertrofi Ventrikel Kiri</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="thalach" class="form-label font-weight-bold">Detak Jantung Maksimal
+                            (thalach)</label>
+                        <input type="number" class="form-control" name="thalach" id="thalach"
+                            placeholder="bpm. Contoh: 150" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="exang" class="form-label font-weight-bold">Angina Akibat Olahraga? (exang)</label>
+                        <select class="form-control" name="exang" id="exang" required>
+                            <option value="0">Tidak</option>
+                            <option value="1">Ya</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <label for="oldpeak" class="form-label font-weight-bold">Depresi ST (oldpeak)</label>
+                        <input type="number" step="0.1" class="form-control" name="oldpeak" id="oldpeak"
+                            placeholder="Contoh: 1.0" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="slope" class="form-label font-weight-bold">Kemiringan Segmen ST (slope)</label>
+                        <select class="form-control" name="slope" id="slope" required>
+                            <option value="0">0: Upsloping</option>
+                            <option value="1">1: Flat</option>
+                            <option value="2">2: Downsloping</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="ca" class="form-label font-weight-bold">Jumlah Pembuluh Utama (ca)</label>
+                        <select class="form-control" name="ca" id="ca" required>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="thal" class="form-label font-weight-bold">Hasil Thalassemia (thal)</label>
+                        <select class="form-control" name="thal" id="thal" required>
+                            <option value="0">0: Normal</option>
+                            <option value="1">1: Cacat Tetap</option>
+                            <option value="2">2: Cacat Dapat Berubah</option>
+                            <option value="3">3: Cacat Reversibel</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-danger btn-block btn-lg">🎯 Hitung Risiko Penyakit
+                        Jantung</button>
+                </div>
+            </form>
+
+            {% if result and result.success %}
+            <hr class="my-4">
+            <div class="p-4 mb-2 bg-light text-dark rounded border">
+                <h5 class="text-secondary mb-3">🔍 Hasil Prediksi Model Terbaru:</h5>
+
+                <h3>
+                    {% if result.prediction == 1 %}
+                    <div class="alert alert-danger d-inline-block w-100 p-3 mt-2" style="font-size: 1.15rem;">
+                        ⚠️ <strong>Hasil:</strong> Risiko Jantung (Ya) — {{ result.formatted }}
+                    </div>
+                    {% else %}
+                    <div class="alert alert-success d-inline-block w-100 p-3 mt-2" style="font-size: 1.15rem;">
+                        ✅ <strong>Hasil:</strong> Sehat (Tidak Berisiko) — {{ result.formatted }}
+                    </div>
+                    {% endif %}
+                </h3>
+                <small class="text-muted">*Hasil prediksi di atas didasarkan pada perhitungan matematis model Logistic
+                    Regression yang telah dioptimalkan dengan Capping Outlier + Robust Scaler + SMOTE.</small>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+    {% if history_data or (result and result.success) %}
+    <div class="card shadow">
+        <div class="card-header bg-secondary text-white">
+            <h4 class="card-title mb-0">📊 Manifes Riwayat Pemeriksaan Pasien</h4>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped mb-0 align-middle text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Gender</th>
+                            <th>Usia</th>
+                            <th>Nyeri Dada</th>
+                            <th>Tensi (bps)</th>
+                            <th>Kolesterol</th>
+                            <th>Max HR</th>
+                            <th>Oldpeak</th>
+                            <th>CA</th>
+                            <th>Thal</th>
+                            <th>Hasil Prediksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% set items = history_data if history_data is defined and history_data else
+                        [result.input_summary] if result and result.success else [] %}
+                        {% for item in items %}
+                        <tr>
+                            <td>
+                                {% if item.sex == 1 or item.sex == '1' %}
+                                <span class="badge bg-primary">Laki-laki</span>
+                                {% else %}
+                                <span class="badge" style="background-color: #e83e8c; color: white;">Perempuan</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ item.age }} Thn</td>
+                            <td><span class="badge bg-secondary">Tipe {{ item.cp }}</span></td>
+                            <td>{{ item.trestbps }}</td>
+                            <td>{{ item.chol }}</td>
+                            <td>{{ item.thalach }}</td>
+                            <td>{{ item.oldpeak }}</td>
+                            <td>{{ item.ca }}</td>
+                            <td><span class="badge bg-info text-dark">T{{ item.thal }}</span></td>
+                            <td>
+                                {# Cek status prediksi langsung dari item atau dari root result #}
+                                {% set pred = item.prediction if item.prediction is defined else result.prediction %}
+                                {% if pred == 1 or pred == '1' %}
+                                <span class="badge bg-danger p-2 w-100">Risiko Jantung (Ya)</span>
+                                {% else %}
+                                <span class="badge bg-success p-2 w-100">Sehat (Tidak)</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
