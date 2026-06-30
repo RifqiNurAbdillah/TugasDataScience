@@ -9,39 +9,50 @@
    ================================================================ */
 :root {
   /* Palette - Light Mode Solid Colors */
-  --vx-bg:            #ffffff;
-  --vx-bg-2:          #f8fafc;   /* Slate 50 */
-  --vx-bg-3:          #f1f5f9;   /* Slate 100 */
-  --vx-surface:       #ffffff;
-  --vx-surface-2:     #f8fafc;
-  --vx-border:        #e2e8f0;   /* Slate 200 */
-  --vx-border-hover:  #cbd5e1;   /* Slate 300 */
+  --vx-bg: #ffffff;
+  --vx-bg-2: #f8fafc;
+  /* Slate 50 */
+  --vx-bg-3: #f1f5f9;
+  /* Slate 100 */
+  --vx-surface: #ffffff;
+  --vx-surface-2: #f8fafc;
+  --vx-border: #e2e8f0;
+  /* Slate 200 */
+  --vx-border-hover: #cbd5e1;
+  /* Slate 300 */
 
   /* Theme Solid Colors (No Gradients) */
-  --vx-primary:       #1e40af;   /* Dark Blue */
+  --vx-primary: #1e40af;
+  /* Dark Blue */
   --vx-primary-hover: #1d4ed8;
-  --vx-accent:        #6d28d9;   /* Purple */
-  --vx-accent-hover:  #5b21b6;
-  
+  --vx-accent: #6d28d9;
+  /* Purple */
+  --vx-accent-hover: #5b21b6;
+
   /* Text */
-  --vx-text-dark:     #0f172a;   /* Slate 900 (Black) */
-  --vx-text-body:     #334155;   /* Slate 700 */
-  --vx-text-muted:    #64748b;   /* Slate 500 */
-  --vx-text-blue:     #1e3a8a;   /* Deep Dark Blue */
-  --vx-text-purple:   #5b21b6;   /* Rich Purple */
+  --vx-text-dark: #0f172a;
+  /* Slate 900 (Black) */
+  --vx-text-body: #334155;
+  /* Slate 700 */
+  --vx-text-muted: #64748b;
+  /* Slate 500 */
+  --vx-text-blue: #1e3a8a;
+  /* Deep Dark Blue */
+  --vx-text-purple: #5b21b6;
+  /* Rich Purple */
 
   /* Shadows & Radius */
-  --vx-shadow-sm:     0 1px 2px rgba(0, 0, 0, 0.05);
-  --vx-shadow-md:     0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  --vx-shadow-lg:     0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
-  --vx-card-shadow:   0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+  --vx-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --vx-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --vx-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+  --vx-card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
 
-  --vx-radius:        8px;
-  --vx-radius-lg:     16px;
-  --vx-radius-sm:     4px;
+  --vx-radius: 8px;
+  --vx-radius-lg: 16px;
+  --vx-radius-sm: 4px;
 
-  --vx-transition:    all 0.2s ease-in-out;
-  --vx-navbar-h:      72px;
+  --vx-transition: all 0.2s ease-in-out;
+  --vx-navbar-h: 72px;
 }
 
 
@@ -62,7 +73,12 @@ main {
   flex: 1;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--vx-text-dark);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -118,8 +134,15 @@ pre code {
 }
 
 /* Extra padding helpers */
-.py-6 { padding-top: 5rem !important; padding-bottom: 5rem !important; }
-.py-7 { padding-top: 6rem !important; padding-bottom: 6rem !important; }
+.py-6 {
+  padding-top: 5rem !important;
+  padding-bottom: 5rem !important;
+}
+
+.py-7 {
+  padding-top: 6rem !important;
+  padding-bottom: 6rem !important;
+}
 
 
 /* ================================================================
@@ -353,8 +376,10 @@ pre code {
 .vx-badge {
   display: inline-flex;
   align-items: center;
-  background-color: #eff6ff;   /* Blue 50 */
-  border: 1px solid #bfdbfe;   /* Blue 200 */
+  background-color: #eff6ff;
+  /* Blue 50 */
+  border: 1px solid #bfdbfe;
+  /* Blue 200 */
   color: var(--vx-primary);
   border-radius: 999px;
   padding: 0.4rem 1.2rem;
@@ -364,8 +389,10 @@ pre code {
 }
 
 .vx-badge-purple {
-  background-color: #f5f3ff;   /* Purple 50 */
-  border: 1px solid #ddd6fe;   /* Purple 200 */
+  background-color: #f5f3ff;
+  /* Purple 50 */
+  border: 1px solid #ddd6fe;
+  /* Purple 200 */
   color: var(--vx-accent);
 }
 
@@ -460,12 +487,35 @@ pre code {
 }
 
 /* Flat solid colors for feature icons */
-.vx-icon-blue   { background-color: #dbeafe; color: #1e40af; }
-.vx-icon-purple { background-color: #f3e8ff; color: #6d28d9; }
-.vx-icon-green  { background-color: #d1fae5; color: #065f46; }
-.vx-icon-orange { background-color: #ffedd5; color: #9a3412; }
-.vx-icon-pink   { background-color: #fce7f3; color: #9d174d; }
-.vx-icon-teal   { background-color: #ccfbf1; color: #115e59; }
+.vx-icon-blue {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.vx-icon-purple {
+  background-color: #f3e8ff;
+  color: #6d28d9;
+}
+
+.vx-icon-green {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.vx-icon-orange {
+  background-color: #ffedd5;
+  color: #9a3412;
+}
+
+.vx-icon-pink {
+  background-color: #fce7f3;
+  color: #9d174d;
+}
+
+.vx-icon-teal {
+  background-color: #ccfbf1;
+  color: #115e59;
+}
 
 .vx-feature-title {
   font-size: 1.15rem;
@@ -491,14 +541,16 @@ pre code {
 }
 
 .vx-code-card {
-  background-color: #0f172a;   /* Slate 900 */
+  background-color: #0f172a;
+  /* Slate 900 */
   border-radius: var(--vx-radius-lg);
   overflow: hidden;
   box-shadow: var(--vx-card-shadow);
 }
 
 .vx-code-card-header {
-  background-color: #1e293b;   /* Slate 800 */
+  background-color: #1e293b;
+  /* Slate 800 */
   padding: 0.85rem 1.25rem;
   display: flex;
   align-items: center;
@@ -512,9 +564,18 @@ pre code {
   border-radius: 50%;
   flex-shrink: 0;
 }
-.vx-dot-red    { background-color: #ef4444; }
-.vx-dot-yellow { background-color: #f59e0b; }
-.vx-dot-green  { background-color: #10b981; }
+
+.vx-dot-red {
+  background-color: #ef4444;
+}
+
+.vx-dot-yellow {
+  background-color: #f59e0b;
+}
+
+.vx-dot-green {
+  background-color: #10b981;
+}
 
 .vx-code-body {
   padding: 1.75rem;
@@ -526,10 +587,23 @@ pre code {
   overflow-x: auto;
 }
 
-.vx-kw      { color: #f472b6; font-weight: 600; }
-.vx-str     { color: #34d399; }
-.vx-bool    { color: #fb923c; }
-.vx-comment { color: #94a3b8; font-style: italic; }
+.vx-kw {
+  color: #f472b6;
+  font-weight: 600;
+}
+
+.vx-str {
+  color: #34d399;
+}
+
+.vx-bool {
+  color: #fb923c;
+}
+
+.vx-comment {
+  color: #94a3b8;
+  font-style: italic;
+}
 
 
 /* ================================================================
@@ -820,7 +894,7 @@ pre code {
     padding: 3rem 0;
     text-align: center;
   }
-  
+
   .vx-hero-logo {
     margin: 0 auto 1.5rem auto;
   }
@@ -883,13 +957,33 @@ pre code {
 }
 
 /* Transition Delay Helpers */
-.vx-delay-100 { transition-delay: 100ms; }
-.vx-delay-200 { transition-delay: 200ms; }
-.vx-delay-300 { transition-delay: 300ms; }
-.vx-delay-400 { transition-delay: 400ms; }
-.vx-delay-500 { transition-delay: 500ms; }
-.vx-delay-600 { transition-delay: 600ms; }
-.vx-delay-700 { transition-delay: 700ms; }
+.vx-delay-100 {
+  transition-delay: 100ms;
+}
+
+.vx-delay-200 {
+  transition-delay: 200ms;
+}
+
+.vx-delay-300 {
+  transition-delay: 300ms;
+}
+
+.vx-delay-400 {
+  transition-delay: 400ms;
+}
+
+.vx-delay-500 {
+  transition-delay: 500ms;
+}
+
+.vx-delay-600 {
+  transition-delay: 600ms;
+}
+
+.vx-delay-700 {
+  transition-delay: 700ms;
+}
 
 /* Scroll-Triggered Reveal Initial States (for Intersection Observer) */
 .vx-feature-card,
@@ -1015,9 +1109,26 @@ pre code {
   transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.vx-bar-danger  { background-color: #ef4444; }
-.vx-bar-warning { background-color: #f59e0b; }
-.vx-bar-success { background-color: #10b981; }
+.vx-bar-primary {
+  background-color: #0c31ff;
+}
+
+.vx-bar-danger {
+  background-color: #ef4444;
+}
+
+.vx-bar-warning {
+  background-color: #f59e0b;
+}
+
+.vx-bar-success {
+  background-color: #10b981;
+}
+
+.vx-bar-info {
+  background-color: #0ad4ff;
+}
+
 
 .vx-metric-hint {
   font-size: 0.76rem;
