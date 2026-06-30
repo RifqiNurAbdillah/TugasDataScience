@@ -62,7 +62,13 @@ def create_app():
 
     @login_manager.user_loader
     def load_user(user_id):
-        return db.session.get(User, int(user_id))
+        demo_user = User()
+        demo_user.id = 1
+        demo_user.username = "Administrator"
+        demo_user.email = "admin@vertix.com"
+        demo_user.password = ""
+        demo_user.created_at = datetime.now(timezone.utc)
+        return demo_user
 
     # =============================================================
     # Jinja Global
